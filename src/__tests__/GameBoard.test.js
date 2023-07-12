@@ -9,6 +9,7 @@ test('Test to see if board is 10x10', () => {
     expect(board[0].length).toBe(10); 
 });
 
+//will create logic for uniqueness after player class or during styling
 test('This tests if the ships are placed properly for now in a default location', () => {
     const gameBoard = new GameBoard(); 
     const player1Ships = [new Ship(3),new Ship(4)];
@@ -29,14 +30,10 @@ test('This tests if the ships are placed properly for now in a default location'
 
 test('This tests if coords are added', () => {
     const gameBoard = new GameBoard();
-    gameBoard.AddShipCoords(0,0);
-    gameBoard.AddShipCoords(1,0);
-    gameBoard.AddShipCoords(2,0);
+    const player1Ships = [new Ship(3),new Ship(4)];
+    const shipCoords = [[0,0],[1,0],[2,0]];
+    gameBoard.AddShipCoords(player1Ships[1],arr);
 
-    expect(gameBoard.coordinates.has('0,0')).toBe(true);
-    expect(gameBoard.coordinates.has('1,0')).toBe(true);
-    expect(gameBoard.coordinates.has('2,0')).toBe(true);
-    expect(gameBoard.coordinates.has('3,0')).toBe(false);
-
-
-})
+   const addedCoords = gameBoard.coordinates.get(player1Ships[1]);
+   expect(addedCoords).toEqual(shipCoords);
+});

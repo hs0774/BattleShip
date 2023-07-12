@@ -26,6 +26,7 @@ export class GameBoard {
             const x=0;
             const y=player1Ships.indexOf(ship);
             for(let i=0;i<ship.length;i++){
+                this.player1board[x+i][y]=ship.length;
                 this.AddShipCoords((x+i),y);
             }
         }

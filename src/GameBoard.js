@@ -1,16 +1,16 @@
 import { Ship } from "./ship.js";
 
-const player1Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
-const player2Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
+// const player1Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
+// const player2Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
 
 export class GameBoard {
-    
+
     constructor(){
         this.boardSize=10;
         this.coordinates= new Map();
         this.AttackStorage = [];
-        this.player1board=this.createBoard();
-        this.player2board=this.createBoard();
+        this.missedAttacks=[];
+        this.playerboard=this.createBoard();
     }
 
     createBoard(){
@@ -25,13 +25,13 @@ export class GameBoard {
         return board;
     }
 
-    placeShip(player1Ships){
-        for (const ship of player1Ships){
+    placeShip(playerShips){
+        for (const ship of playerShips){
             const x=0;
-            const y=player1Ships.indexOf(ship);
+            const y=playerShips.indexOf(ship);
             let arr=[];
             for (let i=0;i<ship.length;i++){
-                this.player1board[x+i][y]=ship.length;  
+                this.playerboard[x+i][y]=ship.length;  
                 arr.push([x+1,y]); 
             }
 
@@ -55,6 +55,8 @@ export class GameBoard {
                     key.Hit();
                     array.splice(index,1);
                     this.checkSunk();
+                } else {
+                    this.missedAttacks.push(coords);
                 }
             });
         });
@@ -62,11 +64,12 @@ export class GameBoard {
     }
 
     checkSunk(){
+        let allsunk = true;
         this.coordinates.forEach((array,key) => {
             if(array.length > 0){
-                return false;
+                allsunk=false;
             }
-            return true;
         });
+        return allsunk;
     }
 }

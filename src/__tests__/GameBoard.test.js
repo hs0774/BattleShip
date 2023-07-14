@@ -37,3 +37,5 @@ test('This tests if coords are added', () => {
    const addedCoords = gameBoard.coordinates.get(player1Ships[1]);
    expect(addedCoords).toEqual(shipCoords);
 });
+
+test()

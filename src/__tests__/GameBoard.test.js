@@ -57,36 +57,23 @@ test('This tests if coords are added', () => {
 test('Checks if all ships are sunk', () => {
 
     const gameBoard = new GameBoard();
-    const playerShips = [new Ship(3),new Ship(4)];
-    const shipCoords = [[]];
-    gameBoard.AddShipCoords(playerShips[1],shipCoords);
+    gameBoard.coordinates.set(Ship[0],[]);
 
     const result = gameBoard.checkSunk();
-    expect(result).toBe(false);
+    expect(result).toBe(true);
 
 });
 
 test('Checks if all ships are not sunk', () => {
 
     const gameBoard = new GameBoard();
-    const playerShips = [new Ship(3),new Ship(4)];
-    const shipCoords = [[0,0],[1,0],[2,0]];
-    gameBoard.AddShipCoords(playerShips[1],shipCoords);
+    gameBoard.coordinates.set(Ship[0],[1,1]);
 
     const result = gameBoard.checkSunk();
     expect(result).toBe(false);
 
 });
 
-// checkSunk(){
-//     let allsunk = true;
-//     this.coordinates.forEach((array,key) => {
-//         if(array.length > 0){
-//             allsunk=false;
-//         }
-//     });
-//     return allsunk;
-// }
 
 // receiveAttack(coords){
 //     for(let i=0;i<this.AttackStorage.length;i++){

@@ -39,19 +39,21 @@ export class GameBoard {
         }
     }
 
-    AddShipCoords(ship,arr){
-        this.coordinates.set(ship,arr);
-    }
+    AddShipCoords(ship, arr) {
+        this.coordinates.set(ship, arr);
+    } 
 
     receiveAttack(coords){
-        for(let i=0;i<this.AttackStorage.length;i++){
+
+        for(let i=0; i<this.AttackStorage.length; i++){
             if(coords === this.AttackStorage[i]){
                 return false;
             }
         }
+
         this.coordinates.forEach((array,key) => {
             array.forEach((value,index) => {
-                if(value===coords){
+                if(value === coords){
                     key.Hit();
                     array.splice(index,1);
                     this.checkSunk();
@@ -60,16 +62,19 @@ export class GameBoard {
                 }
             });
         });
+
         this.AttackStorage.push(coords);
     }
 
     checkSunk(){
         let allsunk = true;
-        this.coordinates.forEach((array,key) => {
-            if(array.length > 0){
+        this.coordinates.forEach((arra) => {
+            if(arra.length > 0){
                 allsunk = false;
+                return;
             }
         });
         return allsunk;
     }
+
 }

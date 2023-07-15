@@ -67,7 +67,7 @@ export class GameBoard {
         let allsunk = true;
         this.coordinates.forEach((array,key) => {
             if(array.length > 0){
-                allsunk=false;
+                allsunk = false;
             }
         });
         return allsunk;

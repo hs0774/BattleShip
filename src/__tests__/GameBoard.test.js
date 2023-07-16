@@ -48,50 +48,77 @@ test('This tests if coords are added', () => {
 });
 
 //receiveAttack() test
-// test('This tests the various cases that receiveAttack', () => {
+describe('This tests the various cases that receiveAttack', () => {
 
-// });
+    test('Checks if a repeat coord is passed' , () => {
 
+        const gameBoard = new GameBoard();
+        gameBoard.AttackStorage=[[0,0],[0,1],[0,2]];
+        let coords = [0,1];
+        const result = gameBoard.receiveAttack(coords);
+        expect(result).toBe(false);
+    });
+    
+    //we should test for a hit and for a miss 
+    test('this tests if a coord hits and what happens when it does', () => {
+
+        const gameBoard = new GameBoard();
+        const playerShips = [new Ship(3),new Ship(4)];
+        gameBoard.placeShip(playerShips);
+        let coords = [3,1];
+        gameBoard.receiveAttack(coords);
+        expect(playerShips[1].numOfHits).toBe(1);
+        expect(gameBoard.coordinates).not.toContainEqual(coords);
+        expect(gameBoard.AttackStorage).toContainEqual(coords);
+    });
+    
+    test('this tests if a unique coord misses', () => {
+
+        const gameBoard = new GameBoard();
+        const playerShips = [new Ship(3),new Ship(4)];
+        gameBoard.placeShip(playerShips);
+        let coords = [8,8];
+        gameBoard.receiveAttack(coords);
+        expect(playerShips[0].numOfHits).toBe(0);
+        expect(playerShips[1].numOfHits).toBe(0);
+        expect(gameBoard.AttackStorage).toContainEqual(coords);
+        expect(gameBoard.missedAttacks).toContainEqual(coords);
+    });
+});
 
 //checkSunk() test
-test('Checks if all ships are sunk', () => {
+describe('This tests the various cases of checkSunk()', () => {
 
-    const gameBoard = new GameBoard();
-    gameBoard.coordinates.set(Ship[0],[]);
+    test('Checks if all ships are sunk', () => {
 
-    const result = gameBoard.checkSunk();
-    expect(result).toBe(true);
+        const gameBoard = new GameBoard();
+        const ships = [new Ship(3),new Ship(2)];
+        gameBoard.coordinates.set(ships[1],[]);
 
+        const result = gameBoard.checkSunk();
+        expect(result).toBe(true);
+
+    });
+
+    test('Checks if all ships are not sunk', () => {
+
+        const gameBoard = new GameBoard();
+        const ships = [new Ship(3),new Ship(2)];
+        gameBoard.coordinates.set(ships[0],[1,1]);
+
+        const result = gameBoard.checkSunk();
+        expect(result).toBe(false);
+
+    });
+
+    test('Checks if for all ships not just one sunk ship', () => {
+
+        const gameBoard = new GameBoard();
+        const ships = [new Ship(1),new Ship(2)]
+        gameBoard.coordinates.set(ships[0],[]);
+        gameBoard.coordinates.set(ships[1],[1,1]);
+
+        const result = gameBoard.checkSunk();
+        expect(result).toBe(false);
+    });
 });
-
-test('Checks if all ships are not sunk', () => {
-
-    const gameBoard = new GameBoard();
-    gameBoard.coordinates.set(Ship[0],[1,1]);
-
-    const result = gameBoard.checkSunk();
-    expect(result).toBe(false);
-
-});
-
-
-// receiveAttack(coords){
-//     for(let i=0;i<this.AttackStorage.length;i++){
-//         if(coords === this.AttackStorage[i]){
-//             return false;
-//         }
-//     }
-//     this.coordinates.forEach((array,key) => {
-//         array.forEach((value,index) => {
-//             if(value===coords){
-//                 key.Hit();
-//                 array.splice(index,1);
-//                 this.checkSunk();
-//             } else {
-//                 this.missedAttacks.push(coords);
-//             }
-//         });
-//     });
-//     this.AttackStorage.push(coords);
-// }
-

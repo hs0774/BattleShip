@@ -17,8 +17,8 @@ export class Player {
         let duplicate = true;
 
         while(duplicate){
-            const x = Math.floor(Math.random*opponentGameBoard.boardSize);
-            const y = Math.floor(Math.random*opponentGameBoard.boardSize);
+            const x = Math.floor(Math.random*boardSize);
+            const y = Math.floor(Math.random*boardSize);
             let coords = [x,y];
             let duplicate=false;
             for(let i=0;i<opponentGameBoard.AttackStorage.length;i++){

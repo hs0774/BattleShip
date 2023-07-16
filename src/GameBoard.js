@@ -27,14 +27,14 @@ export class GameBoard {
 
     placeShip(playerShips){
         for (const ship of playerShips){
-            const x=0;
+            let x=0;
             const y=playerShips.indexOf(ship);
             let arr=[];
             for (let i=0;i<ship.length;i++){
                 this.playerboard[x+i][y]=ship.length;  
-                arr.push([x+1,y]); 
+                arr.push([x+i,y]); 
             }
-
+            x++;
             this.AddShipCoords(ship,arr);
         }
     }
@@ -46,30 +46,31 @@ export class GameBoard {
     receiveAttack(coords){
 
         for(let i=0; i<this.AttackStorage.length; i++){
-            if(coords === this.AttackStorage[i]){
+            if(JSON.stringify(coords) == JSON.stringify(this.AttackStorage[i])){
                 return false;
             }
         }
-
+        let hitShip=false;
         this.coordinates.forEach((array,key) => {
             array.forEach((value,index) => {
-                if(value === coords){
-                    key.Hit();
+                if(value[0] === coords[0] && value[1] === coords[1]){
+                    key.hit();
                     array.splice(index,1);
                     this.checkSunk();
-                } else {
-                    this.missedAttacks.push(coords);
+                    hitShip=true;
                 }
             });
         });
-
+        if(!hitShip){
+            this.missedAttacks.push(coords);
+        }
         this.AttackStorage.push(coords);
     }
 
     checkSunk(){
         let allsunk = true;
-        this.coordinates.forEach((arra) => {
-            if(arra.length > 0){
+        this.coordinates.forEach((array) => {
+            if(array.length > 0){
                 allsunk = false;
                 return;
             }

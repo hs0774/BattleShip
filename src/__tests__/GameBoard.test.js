@@ -1,6 +1,5 @@
 import { GameBoard } from "../GameBoard.js";
 import { Ship } from "../ship.js";
-//import { Player } from "../player.js";
 
 //createboard() test
 test('Test to see if board is 10x10', () => {
@@ -58,7 +57,7 @@ describe('This tests the various cases that receiveAttack', () => {
         const result = gameBoard.receiveAttack(coords);
         expect(result).toBe(false);
     });
-    
+
     //we should test for a hit and for a miss 
     test('this tests if a coord hits and what happens when it does', () => {
 

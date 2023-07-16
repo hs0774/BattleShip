@@ -1,7 +1,7 @@
-import { Ship } from "./ship.js";
+// import { Ship } from "./ship.js";
 
-// const player1Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
-// const player2Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
+// // const player1Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
+// // const player2Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
 
 export class GameBoard {
 

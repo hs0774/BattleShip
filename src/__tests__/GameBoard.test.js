@@ -69,6 +69,7 @@ describe('This tests the various cases that receiveAttack', () => {
         expect(playerShips[1].numOfHits).toBe(1);
         expect(gameBoard.coordinates).not.toContainEqual(coords);
         expect(gameBoard.AttackStorage).toContainEqual(coords);
+        expect(gameBoard.missedAttacks).not.toContainEqual(coords);
     });
     
     test('this tests if a unique coord misses', () => {

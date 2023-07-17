@@ -1,0 +1,55 @@
+ body {
+    margin: 0;
+    padding: 0;
+    background-image: url("./images/hero.jpg");;
+  } 
+
+.header{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    margin-bottom: 5rem;
+    height: 120px;
+}
+@font-face {
+    font-family: myFirstFont;
+    src: url(./fonts/itc-machine-lt-bold.ttf);
+}
+  
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    height: 60px;
+    margin-top: 70px;
+}
+.title{
+
+    font-size: 48px;
+    color: #cdcdca;
+    font-family: myFirstFont;
+    /* red black blue white */
+}
+
+.container{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   display: flex;
+   justify-content: space-around;
+}
+
+.container > div{
+    height: 500px;
+    width: 500px;
+    border: solid 1px red;
+}
+/* .two{
+    display: none;
+}
+*/
+.three{
+    display: none;
+} 

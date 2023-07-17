@@ -14,11 +14,13 @@ export class Player {
         const boardSize = this.gameBoard.boardSize;
         let isDuplicate = true;
         let coords;
+
         while(isDuplicate){
             const x = Math.floor(Math.random()*boardSize);
             const y = Math.floor(Math.random()*boardSize);
             coords = [x,y];
             isDuplicate=false;
+            
             for(let i=0;i<this.gameBoard.AttackStorage.length;i++){
                 if(JSON.stringify(coords) === JSON.stringify(this.gameBoard.AttackStorage[i])){
                     isDuplicate=true;

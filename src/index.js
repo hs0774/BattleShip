@@ -28,8 +28,10 @@ function create(word){
            
         }
     }
-   // const gridOne = container.querySelector(`.two`);
-    grid.addEventListener('click', (e) => {
+    if(word==='two'){
+    const griddiv = container.querySelector(`.two`);
+   // const cell = griddiv.querySelectorAll('.cell');
+    griddiv.addEventListener('click', (e) => {
             const clickedCell = e.target;
             const clickedCoord = clickedCell.getAttribute('data-coordinate');
             // if (grid.classList.contains('two')) {
@@ -42,5 +44,9 @@ function create(word){
             //    // player1.makeRandomAttack('one');
             // }
         });
+    }
     
 }
+
+// const grid = container.querySelector(`.${word}`);
+// const cell = grid.querySelectorAll('.cell');

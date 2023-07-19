@@ -2,15 +2,15 @@ import { GameBoard } from "./GameBoard.js";
 import { Ship } from "./ship.js";
 
 export class Player {
-    constructor(){
-        this.gameBoard=new GameBoard();
+    constructor(word){
+        this.word=word;
+        this.gameBoard=new GameBoard(word);
         this.PlayerShips= [new Ship(5),new Ship(4),new Ship(3),new Ship(3),new Ship(2)];
     }
-    attack(x,y){
-        let coords = [x,y];
-        this.gameBoard.receiveAttack(coords);
+    attack(coord){
+        this.gameBoard.receiveAttack(coord,this.word);
     }
-    makeRandomAttack(){
+    makeRandomAttack(word){
         const boardSize = this.gameBoard.boardSize;
         let isDuplicate = true;
         let coords;
@@ -28,7 +28,7 @@ export class Player {
                 }
             }
         }
-        this.gameBoard.receiveAttack(coords);
+        this.gameBoard.receiveAttack(coords,word);
     }
     gameOver(){
         return this.gameBoard.checkSunk();

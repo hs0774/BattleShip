@@ -4,33 +4,32 @@
     background-image: url("./images/hero.jpg");;
   } 
 
+.footer,
 .header{
-   
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
+}
+.header{
     margin-bottom: 5rem;
     height: 120px;
 }
-@font-face {
-    font-family: myFirstFont;
-    src: url(./fonts/itc-machine-lt-bold.ttf);
-}
-  
+
 .footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
     height: 60px;
     margin-top: 70px;
 }
-.title{
 
+@font-face {
+    font-family: BattleFont;
+    src: url(./fonts/itc-machine-lt-bold.ttf);
+}
+  
+.title{
     font-size: 48px;
     color: #cdcdca;
-    font-family: myFirstFont;
+    font-family: BattleFont;
     /* red black blue white */
 }
 
@@ -44,12 +43,19 @@
 .container > div{
     height: 500px;
     width: 500px;
-    border: solid 1px red;
+    background-color: gray;
+    opacity: 55%;
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(10,1fr);
 }
-/* .two{
+
+.hidden{
     display: none;
 }
-*/
-.three{
-    display: none;
-} 
+
+
+.cell{
+    border: solid 1px rgb(255, 255, 255);
+    
+}

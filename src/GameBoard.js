@@ -1,8 +1,4 @@
-// import { Ship } from "./ship.js";
-
-// // const player1Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
-// // const player2Ships = [new Ship(5),new Ship(4), new Ship(3),new Ship(3),new Ship(2)];
-
+import { domfunction } from "./gameboardDom.js";
 export class GameBoard {
 
     constructor(){
@@ -17,8 +13,8 @@ export class GameBoard {
         const board = [];
         for (let i=0;i<this.boardSize;i++){
             const row =[];
-            for(let j=0;j<this.boardSize;j++){
-                row.push(0);
+            for(let j=0;j<this.boardSize;j++) {
+               row.push(0);
             }
             board.push(row);
         }
@@ -43,13 +39,15 @@ export class GameBoard {
         this.coordinates.set(ship, arr);
     } 
 
-    receiveAttack(coords){
-
+    receiveAttack(coords,word){
+      console.log(coords,word);
         for(let i=0; i<this.AttackStorage.length; i++){
             if(JSON.stringify(coords) == JSON.stringify(this.AttackStorage[i])){
                 return false;
             }
         }
+        const container = document.querySelector('.container');
+        const grid = container.querySelector(`.${word}`);
         let hitShip=false;
         this.coordinates.forEach((array,key) => {
             array.forEach((value,index) => {
@@ -58,11 +56,26 @@ export class GameBoard {
                     array.splice(index,1);
                     this.checkSunk();
                     hitShip=true;
+                    const cell = grid.querySelectorAll('.cell');
+                    cell.forEach((cell) => {
+                      const celly = JSON.parse(cell.getAttribute('data-coordinate'));
+                        if(celly[0]=== coords[0] && celly[1] === coords[1]) {
+                            cell.style.backgroundColor='red';
+                        }
+                    });
                 }
             });
         });
+
         if(!hitShip){
             this.missedAttacks.push(coords);
+            const cell = grid.querySelectorAll('.cell');
+            cell.forEach((cell) => {
+                const celly = JSON.parse(cell.getAttribute('data-coordinate'));
+                if(celly[0]=== coords[0] && celly[1] === coords[1]) {
+                    cell.style.backgroundColor='blue';
+                }
+            });
         }
         this.AttackStorage.push(coords);
     }

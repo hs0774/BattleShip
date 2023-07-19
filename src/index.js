@@ -28,15 +28,19 @@ function create(word){
            
         }
     }
-    const gridOne = container.querySelector(`.one`);
-    gridOne.addEventListener('click', (e) => {
+   // const gridOne = container.querySelector(`.two`);
+    grid.addEventListener('click', (e) => {
             const clickedCell = e.target;
             const clickedCoord = clickedCell.getAttribute('data-coordinate');
-            if (grid.classList.contains('one')) {
-                player1.attack(JSON.parse(clickedCoord,'one'));
-            } else {
-                player2.makeRandomAttack('two');
-            }
+            // if (grid.classList.contains('two')) {
+               // player1.attack(JSON.parse(clickedCoord),'one');
+             //  player1.makeRandomAttack('two');
+               player2.attack(JSON.parse(clickedCoord),'two');
+               player1.makeRandomAttack('one');
+                
+            // } else {
+            //    // player1.makeRandomAttack('one');
+            // }
         });
     
 }

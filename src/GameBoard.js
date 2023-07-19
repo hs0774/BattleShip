@@ -40,7 +40,7 @@ export class GameBoard {
     } 
 
     receiveAttack(coords,word){
-      console.log(coords,word);
+    //  console.log(coords,word);
         for(let i=0; i<this.AttackStorage.length; i++){
             if(JSON.stringify(coords) == JSON.stringify(this.AttackStorage[i])){
                 return false;

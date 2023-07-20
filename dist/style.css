@@ -12,10 +12,21 @@
     background-color: black;
 }
 .header{
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     height: 120px;
 }
-
+.winner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.playerNum{
+    font-size: 48px;
+    color: #cdcdca;
+    background-color: black;
+    font-family: BattleFont;
+}
 .footer{
     height: 60px;
     margin-top: 70px;
@@ -30,7 +41,6 @@
     font-size: 48px;
     color: #cdcdca;
     font-family: BattleFont;
-    /* red black blue white */
 }
 
 .container{
@@ -54,8 +64,6 @@
     display: none;
 }
 
-
 .cell{
-    border: solid 1px rgb(255, 255, 255);
-    
+    border: solid 1px rgb(255, 255, 255); 
 }

@@ -91,7 +91,7 @@ export class GameBoard {
             }
         });
         if(allsunk){
-            // alert(`player ${this.word} loses`);
+            //
         }
         return allsunk;
     }

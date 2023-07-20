@@ -32,17 +32,38 @@ function create(word){
 
 const griddiv = document.querySelector('.two');
 const cell = griddiv.querySelectorAll('.cell');
-
+const playerWinner = document.querySelector('.playerNum');
 function cellClickListener(e) {
     const clickedCell = e.target;
     const clickedCoord = clickedCell.getAttribute('data-coordinate');
+
+    // const player2Loss = player2.gameOver();
+    // const player1Loss = player1.gameOver();
 
     player2.attack(JSON.parse(clickedCoord), 'two');
     player1.makeRandomAttack('one');
 
     clickedCell.removeEventListener('click', cellClickListener);
+    gameloop();
 }
 
 cell.forEach((cell) => {
     cell.addEventListener('click', cellClickListener);
 });
+
+function gameloop(){
+    const player2Loss = player2.gameOver();
+    const player1Loss = player1.gameOver();
+    if (player1Loss){
+        playerWinner.textContent='Player 2 wins';
+        cell.forEach((cell) => {
+            cell.removeEventListener('click', cellClickListener);
+        });
+    }
+    else if(player2Loss){
+        playerWinner.textContent='Player 1 wins';
+        cell.forEach((cell) => {
+            cell.removeEventListener('click', cellClickListener);
+        });
+    }
+}

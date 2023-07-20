@@ -28,25 +28,21 @@ function create(word){
            
         }
     }
-    if(word==='two'){
-    const griddiv = container.querySelector(`.two`);
-   // const cell = griddiv.querySelectorAll('.cell');
-    griddiv.addEventListener('click', (e) => {
-            const clickedCell = e.target;
-            const clickedCoord = clickedCell.getAttribute('data-coordinate');
-            // if (grid.classList.contains('two')) {
-               // player1.attack(JSON.parse(clickedCoord),'one');
-             //  player1.makeRandomAttack('two');
-               player2.attack(JSON.parse(clickedCoord),'two');
-               player1.makeRandomAttack('one');
-                
-            // } else {
-            //    // player1.makeRandomAttack('one');
-            // }
-        });
-    }
-    
 }
 
-// const grid = container.querySelector(`.${word}`);
-// const cell = grid.querySelectorAll('.cell');
+const griddiv = document.querySelector('.two');
+const cell = griddiv.querySelectorAll('.cell');
+
+function cellClickListener(e) {
+    const clickedCell = e.target;
+    const clickedCoord = clickedCell.getAttribute('data-coordinate');
+
+    player2.attack(JSON.parse(clickedCoord), 'two');
+    player1.makeRandomAttack('one');
+
+    clickedCell.removeEventListener('click', cellClickListener);
+}
+
+cell.forEach((cell) => {
+    cell.addEventListener('click', cellClickListener);
+});

@@ -25,9 +25,11 @@ export class GameBoard {
         for (const ship of playerShips){
             let x=0;
             const y=playerShips.indexOf(ship);
+            console.log();
             let arr=[];
             for (let i=0;i<ship.length;i++){
-                this.playerboard[x+i][y]=ship.length;  
+              //  this.playerboard[x+i][y]=ship.length;  
+              console.log([x+i,y]);
                 arr.push([x+i,y]); 
             }
             x++;
@@ -54,7 +56,7 @@ export class GameBoard {
                 if(value[0] === coords[0] && value[1] === coords[1]){
                     key.hit();
                     array.splice(index,1);
-                    this.checkSunk();
+                   this.checkSunk();
                     hitShip=true;
                     const cell = grid.querySelectorAll('.cell');
                     cell.forEach((cell) => {
@@ -88,6 +90,9 @@ export class GameBoard {
                 return;
             }
         });
+        if(allsunk){
+            // alert(`player ${this.word} loses`);
+        }
         return allsunk;
     }
 

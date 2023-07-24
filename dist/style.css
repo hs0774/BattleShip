@@ -1,9 +1,15 @@
  body {
     margin: 0;
     padding: 0;
-    background-image: url("./images/hero.jpg");;
+    background-image: url("./images/hero.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
   } 
 
+ @font-face {
+    font-family: BattleFont;
+    src: url(./fonts/itc-machine-lt-bold.ttf);
+}
 .footer,
 .header{
     display: flex;
@@ -31,11 +37,6 @@
     height: 60px;
     margin-top: 70px;
 }
-
-@font-face {
-    font-family: BattleFont;
-    src: url(./fonts/itc-machine-lt-bold.ttf);
-}
   
 .title{
     font-size: 48px;
@@ -45,7 +46,7 @@
 
 .container{
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   /* grid-template-columns: 1fr 1fr; */
    display: flex;
    justify-content: space-around;
 }
@@ -56,8 +57,8 @@
     background-color: gray;
     opacity: 55%;
     display: grid;
-    grid-template-columns: repeat(10,1fr);
-    grid-template-rows: repeat(10,1fr);
+    grid-template-columns: repeat(10,50px);
+    grid-template-rows: repeat(10,50px);
 }
 
 .hidden{
@@ -65,5 +66,72 @@
 }
 
 .cell{
-    border: solid 1px rgb(255, 255, 255); 
+    border: solid 1px rgb(207, 198, 198); 
+}
+
+.shipContainer{
+    display: flex;
+    justify-content:space-around;
+}
+
+.ship0{
+    display: grid;
+    grid-template-columns: repeat(5,50px);
+    height: 50px;
+    width: 250px;
+    background-color: red;
+    color: whitesmoke;
+}
+.ship1{
+    display: grid;
+    grid-template-columns: repeat(4,50px);
+    height: 50px;
+    width: 200px;
+    background-color: red;
+    color: whitesmoke;
+}
+.ship2{
+    display: grid;
+    grid-template-columns: repeat(3,50px);
+    height: 50px;
+    width: 150px;
+    background-color: red;
+    color: whitesmoke;
+}
+.ship3{
+    display: grid;
+    grid-template-columns: repeat(3,50px);
+    height: 50px;
+    width: 150px;
+    background-color: red;
+    color: whitesmoke;
+}
+.ship4{
+    display: grid;
+    grid-template-columns: repeat(2,50px);
+    height: 50px;
+    width: 100px;
+    background-color: red;
+    color: whitesmoke;
+}
+
+.shipContainerr{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 50%;
+    margin-top: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    height: 115px;
+}
+
+.heading{
+    color: white;
+    font-family: BattleFont;
+    background-color: black;
+    width: 220px;
+    margin-left: 215px;
+    margin-bottom: -50px;
 }

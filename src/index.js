@@ -67,3 +67,75 @@ function gameloop(){
         });
     }
 }
+
+// let draggedItem = null;
+// const dragShip = document.querySelectorAll('.ship');
+// const firstGrid = document.querySelector('.one');
+
+
+// dragShip.forEach(ship => {
+//     ship.addEventListener('dragstart',dragStart);
+//     ship.addEventListener('dragend',dragEnd);
+// });
+
+// function dragStart(e){
+//     draggedItem = e.target;
+// }
+
+// function dragEnd(e){
+//     draggedItem = null;
+// }
+
+// firstGrid.addEventListener('drop',drop);
+// firstGrid.addEventListener('dragover',dragOver);
+
+// function drop(e){
+//     e.preventDefault();
+//     const targetCell = e.target;
+//     if(targetCell.classList.contains('.cell')){
+//         targetCell.replaceWith(draggedItem);
+//     }
+//     firstGrid.appendChild(draggedItem);
+// }
+
+// function dragOver(e){
+//     e.preventDefault();
+// }
+
+let draggedItem = null;
+const dragShips = document.querySelectorAll('.ship');
+const gridCells = document.querySelectorAll('.cell');
+const firstGrid = document.querySelector('.one');
+
+dragShips.forEach(ship => {
+    ship.addEventListener('dragstart', dragStart);
+    ship.addEventListener('dragend', dragEnd);
+});
+
+function dragStart(e) {
+    draggedItem = e.target;
+}
+
+function dragEnd(e) {
+    draggedItem = null;
+}
+
+// gridCells.forEach(cell => {
+     firstGrid.addEventListener('drop', drop);
+    firstGrid.addEventListener('dragover', dragOver);
+// });
+
+function drop(e) {
+    e.preventDefault();
+    const targetCell = e.target;
+    if (targetCell.classList.contains('cell')) {
+        targetCell.appendChild(draggedItem); // Append the ship to the cell
+    }
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+//let user place ships
+//make play again button work 

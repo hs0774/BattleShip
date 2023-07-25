@@ -29,7 +29,7 @@ export class GameBoard {
             let arr=[];
             for (let i=0;i<ship.length;i++){
               //  this.playerboard[x+i][y]=ship.length;  
-              console.log([x+i,y]);
+             // console.log([x+i,y]);
                 arr.push([x+i,y]); 
             }
             x++;
@@ -37,10 +37,60 @@ export class GameBoard {
         }
     }
 
+    placeRandomShips(playerShips){ ///reminder to test this method
+        for(const ship of playerShips){ //we loop through ships
+           let arr=[];
+           let x,y,placement,coords,check;
+           do {
+             x = Math.floor(Math.random()*10); // we get random x and y that have
+             y = Math.floor(Math.random()*10); // to be greater than or equal to 0
+             coords = [x,y];
+             placement = Math.round(Math.random());
+             check = this.checkShipCoords(ship.length,coords,placement);   
+           } while((x+ship.length > 9 || y+ship.length > 9) || check === false);
+
+           if(placement===1){
+            for (let i=0;i<ship.length;i++){
+                console.log(`[${x+i},${y}]`);
+                arr.push([x+i,y]); 
+              }
+           } else {
+            for (let i=0;i<ship.length;i++){
+                console.log(`[${x},${y+i}]`);
+                arr.push([x,y+i]); 
+            }
+           }
+           this.AddShipCoords(ship,arr);
+        }
+    }
+
+     checkShipCoords(shipLength, coords, placement) {
+        for (const shipCoords of this.coordinates.values()) {
+            for (const value of shipCoords) {
+                let tempX = coords[0]; // Create temporary variables
+                let tempY = coords[1];
+                for (let i = 0; i < shipLength; i++) {
+                    if (placement === 1) {
+                        if (value[0] === tempX && value[1] === tempY) {
+                            return false;
+                        }
+                        tempX++;
+                    } else {
+                        if (value[0] === tempX && value[1] === tempY) {
+                            return false;
+                        }
+                        tempY++;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
     AddShipCoords(ship, arr) {
         this.coordinates.set(ship, arr);
     } 
-
+    
     receiveAttack(coords,word){
     //  console.log(coords,word);
         for(let i=0; i<this.AttackStorage.length; i++){
@@ -90,9 +140,6 @@ export class GameBoard {
                 return;
             }
         });
-        if(allsunk){
-            //
-        }
         return allsunk;
     }
 

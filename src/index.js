@@ -6,7 +6,7 @@ const player1 = new Player('one');
 const player2 = new Player('two');
 
 player1.gameBoard.placeShip(player1.PlayerShips);
-player2.gameBoard.placeShip(player2.PlayerShips);
+player2.gameBoard.placeRandomShips(player2.PlayerShips);
 
 create('one');
 create('two');

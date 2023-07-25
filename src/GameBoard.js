@@ -5,7 +5,7 @@ export class GameBoard {
         this.boardSize=10;
         this.coordinates= new Map();
         this.AttackStorage = [];
-        this.missedAttacks=[];
+        this.coordinates2 = new Map();
         this.playerboard=this.createBoard();
     }
 
@@ -21,23 +21,27 @@ export class GameBoard {
         return board;
     }
 
-    placeShip(playerShips){
+    placeShip(playerShips,word){
+        const container = document.querySelector('.container');
+        const grid = container.querySelector(`.${word}`);
         for (const ship of playerShips){
             let x=0;
             const y=playerShips.indexOf(ship);
-            console.log();
             let arr=[];
-            for (let i=0;i<ship.length;i++){
-              //  this.playerboard[x+i][y]=ship.length;  
-             // console.log([x+i,y]);
-                arr.push([x+i,y]); 
+            for (let i = 0; i < ship.length; i++) {
+                const cell = grid.querySelector(`[data-coordinate='${JSON.stringify([x + i, y])}']`);
+                cell.style.backgroundColor = 'white';
+                arr.push([x + i, y]);
             }
             x++;
             this.AddShipCoords(ship,arr);
         }
+        
     }
 
-    placeRandomShips(playerShips){ ///reminder to test this method
+    placeRandomShips(playerShips,word){ ///reminder to test this method
+        const container = document.querySelector('.container');
+        const grid = container.querySelector(`.${word}`);
         for(const ship of playerShips){ //we loop through ships
            let arr=[];
            let x,y,placement,coords,check;
@@ -51,20 +55,29 @@ export class GameBoard {
 
            if(placement===1){
             for (let i=0;i<ship.length;i++){
-                console.log(`[${x+i},${y}]`);
                 arr.push([x+i,y]); 
+                if(word === 'one'){
+                    const cell = grid.querySelector(`[data-coordinate='${JSON.stringify([x + i, y])}']`);
+                    cell.style.backgroundColor = 'white';
+                   // arr.push([x + i, y]);
+                }
               }
            } else {
             for (let i=0;i<ship.length;i++){
-                console.log(`[${x},${y+i}]`);
+               // console.log(`[${x},${y+i}]`);
                 arr.push([x,y+i]); 
+                if(word === 'one'){
+                    const cell = grid.querySelector(`[data-coordinate='${JSON.stringify([x, y+i])}']`);
+                    cell.style.backgroundColor = 'white';
+                   // arr.push([x + i, y]);
+                }
             }
            }
            this.AddShipCoords(ship,arr);
         }
     }
 
-     checkShipCoords(shipLength, coords, placement) {
+     checkShipCoords(shipLength, coords, placement) {  //test this 
         for (const shipCoords of this.coordinates.values()) {
             for (const value of shipCoords) {
                 let tempX = coords[0]; // Create temporary variables
@@ -89,6 +102,7 @@ export class GameBoard {
     
     AddShipCoords(ship, arr) {
         this.coordinates.set(ship, arr);
+        this.coordinates2.set(ship,[...arr]);
     } 
     
     receiveAttack(coords,word){
@@ -106,7 +120,7 @@ export class GameBoard {
                 if(value[0] === coords[0] && value[1] === coords[1]){
                     key.hit();
                     array.splice(index,1);
-                   this.checkSunk();
+                    this.checkSunk();
                     hitShip=true;
                     const cell = grid.querySelectorAll('.cell');
                     cell.forEach((cell) => {
@@ -116,11 +130,24 @@ export class GameBoard {
                         }
                     });
                 }
+                if(key.sunk == true){
+                    const sunkShipCoordinates = this.coordinates2.get(key);
+                    const cell = grid.querySelectorAll('.cell');
+                    sunkShipCoordinates.forEach((sunkValue) => {
+                        cell.forEach((cell) => {
+                            const celly = JSON.parse(cell.getAttribute('data-coordinate'));
+                              if(celly[0]=== sunkValue[0] && celly[1] === sunkValue[1]) {
+                                  cell.style.backgroundColor='black';
+                              }
+                          });
+                       
+                    });
+                }
             });
         });
 
         if(!hitShip){
-            this.missedAttacks.push(coords);
+           // this.missedAttacks.push(coords);
             const cell = grid.querySelectorAll('.cell');
             cell.forEach((cell) => {
                 const celly = JSON.parse(cell.getAttribute('data-coordinate'));
@@ -142,5 +169,6 @@ export class GameBoard {
         });
         return allsunk;
     }
+
 
 }

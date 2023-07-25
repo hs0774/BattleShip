@@ -5,11 +5,13 @@ import { Player } from "./player.js";
 const player1 = new Player('one');
 const player2 = new Player('two');
 
-player1.gameBoard.placeShip(player1.PlayerShips);
-player2.gameBoard.placeRandomShips(player2.PlayerShips);
-
 create('one');
 create('two');
+player1.gameBoard.placeRandomShips(player1.PlayerShips,'one');
+player2.gameBoard.placeRandomShips(player2.PlayerShips);
+
+// create('one');
+// create('two');
 
 function create(word){
     const board = [];
@@ -29,7 +31,7 @@ function create(word){
         }
     }
 }
-
+const btn = document.querySelector('.btn');
 const griddiv = document.querySelector('.two');
 const cell = griddiv.querySelectorAll('.cell');
 const playerWinner = document.querySelector('.playerNum');
@@ -59,13 +61,26 @@ function gameloop(){
         cell.forEach((cell) => {
             cell.removeEventListener('click', cellClickListener);
         });
+        btn.style.visibility = 'visible';
+        btn.addEventListener('click',function(){
+            window.location.reload();
+        });
     }
     else if(player2Loss){
         playerWinner.textContent='Player 1 wins';
         cell.forEach((cell) => {
             cell.removeEventListener('click', cellClickListener);
         });
+        btn.style.visibility = 'visible';
+        btn.addEventListener('click',function(){
+            window.location.reload();
+        });
     }
+    // const btn = document.querySelector('.btn');
+    // btn.classList.remove('hidden');
+    // btn.addEventListener('click',function(){
+    //     window.location.reload();
+    // });
 }
 
 // let draggedItem = null;

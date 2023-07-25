@@ -55,7 +55,7 @@
     height: 500px;
     width: 500px;
     background-color: gray;
-    opacity: 55%;
+    opacity: 80%;
     display: grid;
     grid-template-columns: repeat(10,50px);
     grid-template-rows: repeat(10,50px);
@@ -134,4 +134,21 @@
     width: 220px;
     margin-left: 215px;
     margin-bottom: -50px;
+}
+
+
+.btn {
+    background-color: black;
+    color: #cdcdca;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-family: BattleFont;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+
+.btn:hover {
+    background-color: #45a049; 
 }

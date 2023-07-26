@@ -10,6 +10,7 @@
     font-family: BattleFont;
     src: url(./fonts/itc-machine-lt-bold.ttf);
 }
+
 .footer,
 .header{
     display: flex;
@@ -17,22 +18,26 @@
     align-items: center;
     background-color: black;
 }
+
 .header{
     margin-bottom: 2rem;
     height: 120px;
 }
+
 .winner{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .playerNum{
     font-size: 48px;
     color: #cdcdca;
     background-color: black;
     font-family: BattleFont;
 }
+
 .footer{
     height: 60px;
     margin-top: 70px;
@@ -46,7 +51,6 @@
 
 .container{
    display: grid;
-   /* grid-template-columns: 1fr 1fr; */
    display: flex;
    justify-content: space-around;
 }
@@ -79,39 +83,43 @@
     grid-template-columns: repeat(5,50px);
     height: 50px;
     width: 250px;
-    background-color: red;
+    background-color: green;
     color: whitesmoke;
 }
+
 .ship1{
     display: grid;
     grid-template-columns: repeat(4,50px);
     height: 50px;
     width: 200px;
-    background-color: red;
+    background-color: green;
     color: whitesmoke;
 }
+
 .ship2{
     display: grid;
     grid-template-columns: repeat(3,50px);
     height: 50px;
     width: 150px;
-    background-color: red;
+    background-color: green;
     color: whitesmoke;
 }
+
 .ship3{
     display: grid;
     grid-template-columns: repeat(3,50px);
     height: 50px;
     width: 150px;
-    background-color: red;
+    background-color: green;
     color: whitesmoke;
 }
+
 .ship4{
     display: grid;
     grid-template-columns: repeat(2,50px);
     height: 50px;
     width: 100px;
-    background-color: red;
+    background-color: green;
     color: whitesmoke;
 }
 
@@ -136,7 +144,6 @@
     margin-bottom: -50px;
 }
 
-
 .btn {
     background-color: black;
     color: #cdcdca;
@@ -147,7 +154,6 @@
     border-radius: 5px; 
     cursor: pointer; 
 }
-
 
 .btn:hover {
     background-color: #45a049; 
